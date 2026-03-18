@@ -4,8 +4,18 @@ import Display from "./components/display";
 import { useState } from "react";
 
 function App() {
-  const [calVal, setVal] = useState("45");
-  const onButtonClick = (event) => console.log(event);
+  const [calVal, setVal] = useState("");
+  const onButtonClick = (buttonText) => {
+    if (buttonText === "c") {
+      setVal(" ");
+    } else if (buttonText === "=") {
+      const result = eval(calVal);
+      setVal(result);
+    } else {
+      const newDisplayValue = calVal + buttonText;
+      setVal(newDisplayValue);
+    }
+  };
 
   return (
     <div className={styles.calculator}>
